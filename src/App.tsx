@@ -5,6 +5,8 @@ import { ScrollArea } from "./components/ui/scroll-area"
 import { Button } from "./components/ui/button"
 import MessageListItem from "./components/app/message-list-item"
 import MessageList from "./components/app/message-list"
+import ChatsFeed from "./components/app/chats-feed"
+import MessageForm from "./components/app/message-form"
 
 function App() {
 
@@ -39,7 +41,14 @@ function App() {
             </ScrollArea>
           </div>
         </aside>
-        <div className="flex-grow"></div>
+
+        {/* messages feed */}
+        <div className="flex-grow flex flex-col bg-[#F3F2F5]">
+          {/* messages */}
+          <ChatsFeed/>
+          {/* message form */}
+          <MessageForm/>
+        </div>
       </div>
     </main>
   )
