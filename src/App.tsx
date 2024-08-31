@@ -4,6 +4,7 @@ import { Input } from "./components/ui/input"
 import { ScrollArea } from "./components/ui/scroll-area"
 import { Button } from "./components/ui/button"
 import MessageListItem from "./components/app/message-list-item"
+import MessageList from "./components/app/message-list"
 
 function App() {
 
@@ -13,11 +14,11 @@ function App() {
         <aside className="h-full w-1/3 border-r-2 border-gray-100 flex flex-col">
           {/* header */}
           <div className="border-b-2 border-gray-100">
-            <div className="ml-6 py-4 flex items-center gap-3">
+            <div className="px-6 py-4 flex items-center gap-3">
               <Avatar>
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
-              <div className="flex border rounded-sm items-center px-2">
+              <div className="flex border rounded-sm items-center px-2 flex-grow">
                 <Search size={16}/>
                 <Input className="border-0 focus-visible:border-0 focus-visible:ring-0" type="search" placeholder="Search ..." />
               </div>
@@ -32,9 +33,9 @@ function App() {
                   <MessageCirclePlus/>
                 </Button>
               </div>
-              <div>
+              <MessageList className="mt-5">
                 <MessageListItem/>
-              </div>
+              </MessageList>
             </ScrollArea>
           </div>
         </aside>
