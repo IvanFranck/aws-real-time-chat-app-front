@@ -7,6 +7,8 @@ import MessageListItem from "./components/app/message-list-item"
 import MessageList from "./components/app/message-list"
 import ChatsFeed from "./components/app/chats-feed"
 import MessageForm from "./components/app/message-form"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./components/ui/dialog"
+import AddContactForm from "./components/app/add-contact-form"
 
 function App() {
 
@@ -21,7 +23,7 @@ function App() {
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
               <div className="flex border rounded-sm items-center px-2 flex-grow">
-                <Search size={16}/>
+                <Search size={16} />
                 <Input className="border-0 focus-visible:border-0 focus-visible:ring-0" type="search" placeholder="Search ..." />
               </div>
             </div>
@@ -31,12 +33,25 @@ function App() {
             <ScrollArea >
               <div className="flex items-center justify-between px-6 mt-4">
                 <h3 className="text-lg text-primary">Chats</h3>
-                <Button variant={'ghost'} className="hover:bg-inherit text-primary hover:text-primary-bold transition-all">
-                  <MessageCirclePlus/>
-                </Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant={'ghost'} className="hover:bg-inherit text-primary hover:text-primary-bold transition-all">
+                      <MessageCirclePlus />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Start a new conversation</DialogTitle>
+                      <DialogDescription>
+                        Enter your friend email address
+                      </DialogDescription>
+                    </DialogHeader>
+                    <AddContactForm />
+                  </DialogContent>
+                </Dialog>
               </div>
               <MessageList className="mt-5">
-                <MessageListItem/>
+                <MessageListItem />
               </MessageList>
             </ScrollArea>
           </div>
@@ -45,9 +60,9 @@ function App() {
         {/* messages feed */}
         <div className="flex-grow flex flex-col bg-[#F3F2F5]">
           {/* messages */}
-          <ChatsFeed/>
+          <ChatsFeed />
           {/* message form */}
-          <MessageForm/>
+          <MessageForm />
         </div>
       </div>
     </main>
