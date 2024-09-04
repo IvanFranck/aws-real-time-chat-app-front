@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { Amplify } from 'aws-amplify';
-import appsyncConfig from './aws-exports';
+import appsyncConfig from './aws-exports.ts';
 
 Amplify.configure(appsyncConfig);
 
