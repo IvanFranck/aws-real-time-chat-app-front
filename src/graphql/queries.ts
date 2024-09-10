@@ -8,6 +8,20 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
+export const listUsers = /* GraphQL */ `query ListUsers($filter: UserFilterInput, $limit: Int, $nextToken: String) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      username
+      email
+      avatar
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.ListUsersQueryVariables, APITypes.ListUsersQuery>;
 export const getUser = /* GraphQL */ `query GetUser($id: getRessourceById!) {
   getUser(id: $id) {
     id

@@ -9,9 +9,45 @@ import ChatsFeed from "./components/app/chats-feed"
 import MessageForm from "./components/app/message-form"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./components/ui/dialog"
 import AddContactForm from "./components/app/add-contact-form"
+import { generateClient } from "aws-amplify/api"
+import { useEffect, useState } from "react"
+import { listUsers } from "./graphql/queries"
+import { Amplify } from 'aws-amplify';
+
+Amplify.configure({
+  API: {
+    GraphQL: {
+      endpoint: 'https://dvvkoua5mjdorigkxip66kvqsu.appsync-api.us-east-1.amazonaws.com/graphql',
+      region: 'us-east-1',
+      defaultAuthMode: 'apiKey',
+      apiKey: 'da2-2lwh4tmatrhafpotpudzkbpi4e'
+    }
+  }
+});
+
+
+const client = generateClient();
 
 function App() {
 
+  const [users, setUsers] = useState<any>()
+  console.log('users', users)
+
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await client.graphql({
+          query: listUsers
+        })
+        setUsers(response.data.listUsers)
+
+      } catch (error) {
+        console.log('error', error)
+      }
+    }
+
+    fetchUsers()
+  }, [])
   return (
     <main className="w-screen h-screen max-h-screen overflow-hidden px-12 py-16">
       <div className="shadow-2xl h-full flex">

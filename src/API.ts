@@ -61,6 +61,58 @@ export type sendMessageInput = {
   content: string,
 };
 
+export type UserFilterInput = {
+  ID?: TableIDFilterInput | null,
+  username?: TableStringFilterInput | null,
+  email?: TableStringFilterInput | null,
+};
+
+export type TableIDFilterInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  size?: ModelSizeInput | null,
+};
+
+export type ModelSizeInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+};
+
+export type TableStringFilterInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  size?: ModelSizeInput | null,
+};
+
+export type UserConnection = {
+  __typename: "UserConnection",
+  items?:  Array<User | null > | null,
+  nextToken?: string | null,
+};
+
 export type getRessourceById = {
   id: string,
 };
@@ -207,6 +259,26 @@ export type SendMessageMutation = {
     },
     content: string,
     timestamp: string,
+  } | null,
+};
+
+export type ListUsersQueryVariables = {
+  filter?: UserFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListUsersQuery = {
+  listUsers?:  {
+    __typename: "UserConnection",
+    items?:  Array< {
+      __typename: "User",
+      id: string,
+      username: string,
+      email: string,
+      avatar?: string | null,
+    } | null > | null,
+    nextToken?: string | null,
   } | null,
 };
 
