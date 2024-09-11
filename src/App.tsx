@@ -37,17 +37,18 @@ function App() {
     async function fetchUsers() {
       try {
         const response = await client.graphql({
-          query: listUsers
-        })
-        setUsers(response.data.listUsers)
-
+          query: listUsers,
+          authMode: 'apiKey',
+          authToken: 'da2-2lwh4tmatrhafpotpudzkbpi4e',
+        });
+        setUsers(response.data.listUsers);
       } catch (error) {
-        console.log('error', error)
+        console.error('Error fetching users:', error);
       }
     }
 
-    fetchUsers()
-  }, [])
+    fetchUsers();
+  }, []);
   return (
     <main className="w-screen h-screen max-h-screen overflow-hidden px-12 py-16">
       <div className="shadow-2xl h-full flex">
