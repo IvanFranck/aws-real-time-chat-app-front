@@ -1,7 +1,7 @@
 import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 import { initSchema } from "@aws-amplify/datastore";
 
-import { schema } from "../schema";
+import { schema } from "./schema";
 
 
 

@@ -13,14 +13,14 @@ import { generateClient } from "aws-amplify/api"
 import { useEffect, useState } from "react"
 import { listUsers } from "./graphql/queries"
 import { Amplify } from 'aws-amplify';
+import appsyncConfig from "./aws-exports"
 
 Amplify.configure({
+  ...appsyncConfig,
   API: {
     GraphQL: {
-      endpoint: 'https://dvvkoua5mjdorigkxip66kvqsu.appsync-api.us-east-1.amazonaws.com/graphql',
-      region: 'us-east-1',
-      defaultAuthMode: 'apiKey',
-      apiKey: 'da2-2lwh4tmatrhafpotpudzkbpi4e'
+      ...appsyncConfig.API.GraphQL,
+      defaultAuthMode: 'apiKey'
     }
   }
 });
@@ -38,8 +38,6 @@ function App() {
       try {
         const response = await client.graphql({
           query: listUsers,
-          authMode: 'apiKey',
-          authToken: 'da2-2lwh4tmatrhafpotpudzkbpi4e',
         });
         setUsers(response.data.listUsers);
       } catch (error) {
