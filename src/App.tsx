@@ -11,9 +11,10 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import AddContactForm from "./components/app/add-contact-form"
 import { generateClient } from "aws-amplify/api"
 import { useEffect, useState } from "react"
-import { listUsers } from "./graphql/queries"
+import { getUser } from "./graphql/queries"
 import { Amplify } from 'aws-amplify';
 import appsyncConfig from "./aws-exports"
+import { UserConnection } from "./API"
 
 Amplify.configure({
   ...appsyncConfig,
@@ -30,16 +31,19 @@ const client = generateClient();
 
 function App() {
 
-  const [users, setUsers] = useState<any>()
+  const [users, setUsers] = useState<UserConnection>()
   console.log('users', users)
 
   useEffect(() => {
     async function fetchUsers() {
       try {
         const response = await client.graphql({
-          query: listUsers,
+          query: getUser,
+          variables: {
+            email: 'ivan@test.com'
+          }
         });
-        setUsers(response.data.listUsers);
+        setUsers(response.data.getUser);
       } catch (error) {
         console.error('Error fetching users:', error);
       }

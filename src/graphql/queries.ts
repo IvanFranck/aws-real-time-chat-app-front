@@ -8,11 +8,11 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const listUsers = /* GraphQL */ `query ListUsers($filter: UserFilterInput, $limit: Int, $nextToken: String) {
-  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+export const getUser = /* GraphQL */ `query GetUser($email: String!) {
+  getUser(email: $email) {
     items {
       id
-      username
+      userName
       email
       avatar
       __typename
@@ -21,97 +21,40 @@ export const listUsers = /* GraphQL */ `query ListUsers($filter: UserFilterInput
     __typename
   }
 }
-` as GeneratedQuery<APITypes.ListUsersQueryVariables, APITypes.ListUsersQuery>;
-export const getUser = /* GraphQL */ `query GetUser($id: getRessourceById!) {
-  getUser(id: $id) {
-    id
-    username
-    email
-    avatar
-    contacts {
-      id
-      username
-      email
-      avatar
-      __typename
-    }
-    conversations {
-      id
-      createdAt
-      updatedAt
-      __typename
-    }
-    __typename
-  }
-}
 ` as GeneratedQuery<APITypes.GetUserQueryVariables, APITypes.GetUserQuery>;
-export const getConversation = /* GraphQL */ `query GetConversation($id: getRessourceById!) {
-  getConversation(id: $id) {
-    id
-    participants {
+export const getContacts = /* GraphQL */ `query GetContacts($userId: ID!, $limit: Int, $nextToken: String) {
+  getContacts(userId: $userId, limit: $limit, nextToken: $nextToken) {
+    items {
       id
-      username
+      userName
       email
       avatar
       __typename
     }
-    messages {
-      id
-      content
-      timestamp
-      __typename
-    }
-    lastMessage {
-      id
-      content
-      timestamp
-      __typename
-    }
-    createdAt
-    updatedAt
+    nextToken
     __typename
   }
 }
 ` as GeneratedQuery<
-  APITypes.GetConversationQueryVariables,
-  APITypes.GetConversationQuery
+  APITypes.GetContactsQueryVariables,
+  APITypes.GetContactsQuery
 >;
-export const getUserConversations = /* GraphQL */ `query GetUserConversations($userId: getRessourceById!) {
-  getUserConversations(userId: $userId) {
-    id
-    participants {
+export const getConversations = /* GraphQL */ `query GetConversations($userId: ID!, $limit: Int, $nextToken: String) {
+  getConversations(userId: $userId, limit: $limit, nextToken: $nextToken) {
+    items {
       id
-      username
-      email
-      avatar
+      contactName
       __typename
     }
-    messages {
-      id
-      content
-      timestamp
-      __typename
-    }
-    lastMessage {
-      id
-      content
-      timestamp
-      __typename
-    }
-    createdAt
-    updatedAt
+    nextToken
     __typename
   }
 }
 ` as GeneratedQuery<
-  APITypes.GetUserConversationsQueryVariables,
-  APITypes.GetUserConversationsQuery
+  APITypes.GetConversationsQueryVariables,
+  APITypes.GetConversationsQuery
 >;
-export const getMessages = /* GraphQL */ `query GetMessages(
-  $conversationId: getRessourceById!
-  $limit: Int
-  $nextToken: String
-) {
+export const getMessages = /* GraphQL */ `query GetMessages($conversationId: ID!, $limit: Int, $nextToken: String) {
   getMessages(
     conversationId: $conversationId
     limit: $limit
@@ -121,6 +64,8 @@ export const getMessages = /* GraphQL */ `query GetMessages(
       id
       content
       timestamp
+      senderId
+      receiverId
       __typename
     }
     nextToken

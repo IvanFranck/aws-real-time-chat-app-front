@@ -8,23 +8,15 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
-export const createUser = /* GraphQL */ `mutation CreateUser($payload: createUserInput) {
-  createUser(payload: $payload) {
+export const createUser = /* GraphQL */ `mutation CreateUser($createUserInput: CreateUserInput!) {
+  createUser(createUserInput: $createUserInput) {
     id
-    username
+    userName
     email
     avatar
-    contacts {
-      id
-      username
-      email
-      avatar
-      __typename
-    }
     conversations {
       id
-      createdAt
-      updatedAt
+      contactName
       __typename
     }
     __typename
@@ -34,82 +26,16 @@ export const createUser = /* GraphQL */ `mutation CreateUser($payload: createUse
   APITypes.CreateUserMutationVariables,
   APITypes.CreateUserMutation
 >;
-export const updateUser = /* GraphQL */ `mutation UpdateUser($payload: updateUserInput) {
-  updateUser(payload: $payload) {
-    id
-    username
-    email
-    avatar
-    contacts {
+export const createConversation = /* GraphQL */ `mutation CreateConversation(
+  $createConversationInput: CreateConversationInput!
+) {
+  createConversation(createConversationInput: $createConversationInput) {
+    keys {
       id
-      username
-      email
-      avatar
+      typeId
       __typename
     }
-    conversations {
-      id
-      createdAt
-      updatedAt
-      __typename
-    }
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateUserMutationVariables,
-  APITypes.UpdateUserMutation
->;
-export const addContact = /* GraphQL */ `mutation AddContact($payload: addContactInput) {
-  addContact(payload: $payload) {
-    id
-    username
-    email
-    avatar
-    contacts {
-      id
-      username
-      email
-      avatar
-      __typename
-    }
-    conversations {
-      id
-      createdAt
-      updatedAt
-      __typename
-    }
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.AddContactMutationVariables,
-  APITypes.AddContactMutation
->;
-export const createConversation = /* GraphQL */ `mutation CreateConversation($payload: createConversationInput!) {
-  createConversation(payload: $payload) {
-    id
-    participants {
-      id
-      username
-      email
-      avatar
-      __typename
-    }
-    messages {
-      id
-      content
-      timestamp
-      __typename
-    }
-    lastMessage {
-      id
-      content
-      timestamp
-      __typename
-    }
-    createdAt
-    updatedAt
+    cancellationReasons
     __typename
   }
 }
@@ -117,24 +43,14 @@ export const createConversation = /* GraphQL */ `mutation CreateConversation($pa
   APITypes.CreateConversationMutationVariables,
   APITypes.CreateConversationMutation
 >;
-export const sendMessage = /* GraphQL */ `mutation SendMessage($payload: sendMessageInput) {
-  sendMessage(payload: $payload) {
-    id
-    conversation {
+export const sendMessage = /* GraphQL */ `mutation SendMessage($sendMessageInput: SendMessageInput!) {
+  sendMessage(sendMessageInput: $sendMessageInput) {
+    keys {
       id
-      createdAt
-      updatedAt
+      typeId
       __typename
     }
-    sender {
-      id
-      username
-      email
-      avatar
-      __typename
-    }
-    content
-    timestamp
+    cancellationReasons
     __typename
   }
 }

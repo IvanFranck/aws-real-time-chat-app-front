@@ -2,13 +2,13 @@
 
 const appsyncConfig =  {
   API: {
-      GraphQL: {
-        endpoint: 'https://dvvkoua5mjdorigkxip66kvqsu.appsync-api.us-east-1.amazonaws.com/graphql',
-        region: 'us-east-1',
-        defaultAuthMode: 'apiKey',
-        apiKey: 'da2-2lwh4tmatrhafpotpudzkbpi4e'
-      }
-  }
+    GraphQL: {
+      endpoint: 'https://dvvkoua5mjdorigkxip66kvqsu.appsync-api.us-east-1.amazonaws.com/graphql',
+      region: 'us-east-1',
+      defaultAuthMode: 'apiKey',
+      apiKey: 'da2-sypv4xk7zfgndlf6r3ps3wtfvm'
+    }
+}
 };
 
 export default appsyncConfig;

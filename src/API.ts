@@ -1,391 +1,207 @@
+/* tslint:disable */
+/* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type createUserInput = {
-  username: string,
+export type CreateUserInput = {
   email: string,
   avatar?: string | null,
+  userName: string,
 };
 
 export type User = {
   __typename: "User",
   id: string,
-  username: string,
+  userName: string,
   email: string,
   avatar?: string | null,
-  contacts?:  Array<User | null > | null,
   conversations?:  Array<Conversation | null > | null,
 };
 
 export type Conversation = {
   __typename: "Conversation",
   id: string,
-  participants:  Array<User >,
-  messages?:  Array<Message | null > | null,
-  lastMessage?: Message | null,
-  createdAt: string,
-  updatedAt: string,
+  contactName: string,
+  lastMessage?:  Array<Message | null > | null,
 };
 
 export type Message = {
   __typename: "Message",
   id: string,
-  conversation: Conversation,
-  sender: User,
   content: string,
   timestamp: string,
-};
-
-export type updateUserInput = {
-  id: string,
-  username?: string | null,
-  email?: string | null,
-  avatar?: string | null,
-};
-
-export type addContactInput = {
-  id: string,
-  username?: string | null,
-  email?: string | null,
-  avatar?: string | null,
-};
-
-export type createConversationInput = {
-  participantIds?: Array< string > | null,
-};
-
-export type sendMessageInput = {
-  conversationId: string,
   senderId: string,
+  receiverId: string,
+};
+
+export type CreateConversationInput = {
+  contactName: string,
+  contactId: string,
+  userId: string,
+  message: string,
+  userName: string,
+};
+
+export type TransactionConnection = {
+  __typename: "TransactionConnection",
+  keys?:  Array<TransactionKey | null > | null,
+  cancellationReasons?: string | null,
+};
+
+export type TransactionKey = {
+  __typename: "TransactionKey",
+  id: string,
+  typeId: string,
+};
+
+export type SendMessageInput = {
   content: string,
-};
-
-export type UserFilterInput = {
-  ID?: TableIDFilterInput | null,
-  username?: TableStringFilterInput | null,
-  email?: TableStringFilterInput | null,
-};
-
-export type TableIDFilterInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  size?: ModelSizeInput | null,
-};
-
-export type ModelSizeInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-};
-
-export type TableStringFilterInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  size?: ModelSizeInput | null,
+  conversationId: string,
+  contactId: string,
+  userId: string,
 };
 
 export type UserConnection = {
   __typename: "UserConnection",
-  items?:  Array<User | null > | null,
+  items:  Array<User >,
   nextToken?: string | null,
 };
 
-export type getRessourceById = {
-  id: string,
+export type ConverstaionConnection = {
+  __typename: "ConverstaionConnection",
+  items:  Array<Conversation >,
+  nextToken?: string | null,
 };
 
 export type MessageConnection = {
   __typename: "MessageConnection",
-  items?:  Array<Message | null > | null,
+  items:  Array<Message >,
   nextToken?: string | null,
 };
 
 export type CreateUserMutationVariables = {
-  payload?: createUserInput | null,
+  createUserInput: CreateUserInput,
 };
 
 export type CreateUserMutation = {
-  createUser?:  {
+  createUser:  {
     __typename: "User",
     id: string,
-    username: string,
+    userName: string,
     email: string,
     avatar?: string | null,
-    contacts?:  Array< {
-      __typename: "User",
-      id: string,
-      username: string,
-      email: string,
-      avatar?: string | null,
-    } | null > | null,
     conversations?:  Array< {
       __typename: "Conversation",
       id: string,
-      createdAt: string,
-      updatedAt: string,
+      contactName: string,
     } | null > | null,
-  } | null,
-};
-
-export type UpdateUserMutationVariables = {
-  payload?: updateUserInput | null,
-};
-
-export type UpdateUserMutation = {
-  updateUser?:  {
-    __typename: "User",
-    id: string,
-    username: string,
-    email: string,
-    avatar?: string | null,
-    contacts?:  Array< {
-      __typename: "User",
-      id: string,
-      username: string,
-      email: string,
-      avatar?: string | null,
-    } | null > | null,
-    conversations?:  Array< {
-      __typename: "Conversation",
-      id: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-  } | null,
-};
-
-export type AddContactMutationVariables = {
-  payload?: addContactInput | null,
-};
-
-export type AddContactMutation = {
-  addContact?:  {
-    __typename: "User",
-    id: string,
-    username: string,
-    email: string,
-    avatar?: string | null,
-    contacts?:  Array< {
-      __typename: "User",
-      id: string,
-      username: string,
-      email: string,
-      avatar?: string | null,
-    } | null > | null,
-    conversations?:  Array< {
-      __typename: "Conversation",
-      id: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-  } | null,
+  },
 };
 
 export type CreateConversationMutationVariables = {
-  payload: createConversationInput,
+  createConversationInput: CreateConversationInput,
 };
 
 export type CreateConversationMutation = {
-  createConversation?:  {
-    __typename: "Conversation",
-    id: string,
-    participants:  Array< {
-      __typename: "User",
+  createConversation:  {
+    __typename: "TransactionConnection",
+    keys?:  Array< {
+      __typename: "TransactionKey",
       id: string,
-      username: string,
-      email: string,
-      avatar?: string | null,
-    } >,
-    messages?:  Array< {
-      __typename: "Message",
-      id: string,
-      content: string,
-      timestamp: string,
+      typeId: string,
     } | null > | null,
-    lastMessage?:  {
-      __typename: "Message",
-      id: string,
-      content: string,
-      timestamp: string,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
+    cancellationReasons?: string | null,
+  },
 };
 
 export type SendMessageMutationVariables = {
-  payload?: sendMessageInput | null,
+  sendMessageInput: SendMessageInput,
 };
 
 export type SendMessageMutation = {
-  sendMessage?:  {
-    __typename: "Message",
-    id: string,
-    conversation:  {
-      __typename: "Conversation",
+  sendMessage:  {
+    __typename: "TransactionConnection",
+    keys?:  Array< {
+      __typename: "TransactionKey",
       id: string,
-      createdAt: string,
-      updatedAt: string,
-    },
-    sender:  {
-      __typename: "User",
-      id: string,
-      username: string,
-      email: string,
-      avatar?: string | null,
-    },
-    content: string,
-    timestamp: string,
-  } | null,
+      typeId: string,
+    } | null > | null,
+    cancellationReasons?: string | null,
+  },
 };
 
-export type ListUsersQueryVariables = {
-  filter?: UserFilterInput | null,
+export type GetUserQueryVariables = {
+  email: string,
+};
+
+export type GetUserQuery = {
+  getUser:  {
+    __typename: "UserConnection",
+    items:  Array< {
+      __typename: "User",
+      id: string,
+      userName: string,
+      email: string,
+      avatar?: string | null,
+    } >,
+    nextToken?: string | null,
+  },
+};
+
+export type GetContactsQueryVariables = {
+  userId: string,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListUsersQuery = {
-  listUsers?:  {
+export type GetContactsQuery = {
+  getContacts:  {
     __typename: "UserConnection",
-    items?:  Array< {
+    items:  Array< {
       __typename: "User",
       id: string,
-      username: string,
+      userName: string,
       email: string,
       avatar?: string | null,
-    } | null > | null,
+    } >,
     nextToken?: string | null,
-  } | null,
+  },
 };
 
-export type GetUserQueryVariables = {
-  id: getRessourceById,
+export type GetConversationsQueryVariables = {
+  userId: string,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type GetUserQuery = {
-  getUser?:  {
-    __typename: "User",
-    id: string,
-    username: string,
-    email: string,
-    avatar?: string | null,
-    contacts?:  Array< {
-      __typename: "User",
-      id: string,
-      username: string,
-      email: string,
-      avatar?: string | null,
-    } | null > | null,
-    conversations?:  Array< {
+export type GetConversationsQuery = {
+  getConversations:  {
+    __typename: "ConverstaionConnection",
+    items:  Array< {
       __typename: "Conversation",
       id: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-  } | null,
-};
-
-export type GetConversationQueryVariables = {
-  id: getRessourceById,
-};
-
-export type GetConversationQuery = {
-  getConversation?:  {
-    __typename: "Conversation",
-    id: string,
-    participants:  Array< {
-      __typename: "User",
-      id: string,
-      username: string,
-      email: string,
-      avatar?: string | null,
+      contactName: string,
     } >,
-    messages?:  Array< {
-      __typename: "Message",
-      id: string,
-      content: string,
-      timestamp: string,
-    } | null > | null,
-    lastMessage?:  {
-      __typename: "Message",
-      id: string,
-      content: string,
-      timestamp: string,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type GetUserConversationsQueryVariables = {
-  userId: getRessourceById,
-};
-
-export type GetUserConversationsQuery = {
-  getUserConversations?:  Array< {
-    __typename: "Conversation",
-    id: string,
-    participants:  Array< {
-      __typename: "User",
-      id: string,
-      username: string,
-      email: string,
-      avatar?: string | null,
-    } >,
-    messages?:  Array< {
-      __typename: "Message",
-      id: string,
-      content: string,
-      timestamp: string,
-    } | null > | null,
-    lastMessage?:  {
-      __typename: "Message",
-      id: string,
-      content: string,
-      timestamp: string,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null > | null,
+    nextToken?: string | null,
+  },
 };
 
 export type GetMessagesQueryVariables = {
-  conversationId: getRessourceById,
+  conversationId: string,
   limit?: number | null,
   nextToken?: string | null,
 };
 
 export type GetMessagesQuery = {
-  getMessages?:  {
+  getMessages:  {
     __typename: "MessageConnection",
-    items?:  Array< {
+    items:  Array< {
       __typename: "Message",
       id: string,
       content: string,
       timestamp: string,
-    } | null > | null,
+      senderId: string,
+      receiverId: string,
+    } >,
     nextToken?: string | null,
-  } | null,
+  },
 };
