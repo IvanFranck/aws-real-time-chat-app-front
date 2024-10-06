@@ -1,0 +1,10 @@
+/* HTML: <div class="loader"></div> */
+.loader {
+    @apply w-12 aspect-square rounded-full border-8 border-gray-200 border-r-primary animate-spin ease-linear repeat-infinite;
+}
+
+@keyframes l2 {
+    to {
+        transform: rotate(1turn)
+    }
+}

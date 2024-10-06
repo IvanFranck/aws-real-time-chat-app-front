@@ -12,11 +12,13 @@ import "./message-form.css"
 import { Textarea } from "../ui/textarea"
 import { Send } from "lucide-react"
 
+
 const formSchema = z.object({
-    message: z.string().min(1),
+    message: z.string().email(),
 })
 
 export default function MessageForm() {
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -31,7 +33,7 @@ export default function MessageForm() {
     }
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="px-4 py-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="px-4 pb-6 h-max">
                 <div className="bg-white shadow-md rounded-md flex w-full items-center form-group px-3 py-3">
                     <FormField
                         control={form.control}
